@@ -3,27 +3,54 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B31DA4AE264BB887002F0570 /* AddExpenseItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31DA4AD264BB887002F0570 /* AddExpenseItemTableViewController.swift */; };
+		B3350717264E36090066CBDA /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = B3350716264E36090066CBDA /* Charts */; };
+		B335071C264E44950066CBDA /* ReportsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B335071B264E44950066CBDA /* ReportsTableViewController.swift */; };
+		B335071E264E44BB0066CBDA /* ReportsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B335071D264E44BB0066CBDA /* ReportsTableViewCell.swift */; };
+		B3350723264E6E2D0066CBDA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B3350722264E6E2C0066CBDA /* GoogleService-Info.plist */; };
 		B3A2133E263F995500EC0C07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A2133D263F995500EC0C07 /* AppDelegate.swift */; };
 		B3A21340263F995500EC0C07 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A2133F263F995500EC0C07 /* SceneDelegate.swift */; };
-		B3A21342263F995500EC0C07 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A21341263F995500EC0C07 /* ViewController.swift */; };
 		B3A21345263F995500EC0C07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3A21343263F995500EC0C07 /* Main.storyboard */; };
 		B3A21347263F995600EC0C07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3A21346263F995600EC0C07 /* Assets.xcassets */; };
 		B3A2134A263F995600EC0C07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3A21348263F995600EC0C07 /* LaunchScreen.storyboard */; };
+		B3A21352263F997000EC0C07 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A21351263F997000EC0C07 /* MainViewController.swift */; };
+		B3A21354263FA99700EC0C07 /* ExpenseItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A21353263FA99700EC0C07 /* ExpenseItemTableViewCell.swift */; };
+		B3A2136D263FDE5700EC0C07 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A2136C263FDE5700EC0C07 /* Enums.swift */; };
+		B3A2136F263FE1D400EC0C07 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A2136E263FE1D400EC0C07 /* Expense.swift */; };
+		B3A2137A26423CC600EC0C07 /* ReceiptPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A2137926423CC600EC0C07 /* ReceiptPhotoViewController.swift */; };
+		B3A213862642CA3500EC0C07 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A213852642CA3500EC0C07 /* AccountTableViewController.swift */; };
+		B3A213882642CA5800EC0C07 /* CategoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A213872642CA5800EC0C07 /* CategoryCollectionViewController.swift */; };
+		B3A2138A2642CAA000EC0C07 /* AccountDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A213892642CAA000EC0C07 /* AccountDetailTableViewCell.swift */; };
+		B3A2138C2642CB1100EC0C07 /* CategoryDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A2138B2642CB1100EC0C07 /* CategoryDetailCollectionViewCell.swift */; };
+		B3F7FE7226465CF600BC0273 /* NumberKeyboardReturn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F7FE7126465CF600BC0273 /* NumberKeyboardReturn.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B31DA4AD264BB887002F0570 /* AddExpenseItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseItemTableViewController.swift; sourceTree = "<group>"; };
+		B335071B264E44950066CBDA /* ReportsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsTableViewController.swift; sourceTree = "<group>"; };
+		B335071D264E44BB0066CBDA /* ReportsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsTableViewCell.swift; sourceTree = "<group>"; };
+		B3350722264E6E2C0066CBDA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B3A2133A263F995500EC0C07 /* spendingTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spendingTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3A2133D263F995500EC0C07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3A2133F263F995500EC0C07 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B3A21341263F995500EC0C07 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B3A21344263F995500EC0C07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B3A21346263F995600EC0C07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B3A21349263F995600EC0C07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B3A2134B263F995600EC0C07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B3A21351263F997000EC0C07 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		B3A21353263FA99700EC0C07 /* ExpenseItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseItemTableViewCell.swift; sourceTree = "<group>"; };
+		B3A2136C263FDE5700EC0C07 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		B3A2136E263FE1D400EC0C07 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		B3A2137926423CC600EC0C07 /* ReceiptPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPhotoViewController.swift; sourceTree = "<group>"; };
+		B3A213852642CA3500EC0C07 /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
+		B3A213872642CA5800EC0C07 /* CategoryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewController.swift; sourceTree = "<group>"; };
+		B3A213892642CAA000EC0C07 /* AccountDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailTableViewCell.swift; sourceTree = "<group>"; };
+		B3A2138B2642CB1100EC0C07 /* CategoryDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		B3F7FE7126465CF600BC0273 /* NumberKeyboardReturn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberKeyboardReturn.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3350717264E36090066CBDA /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +84,52 @@
 		B3A2133C263F995500EC0C07 /* spendingTracker */ = {
 			isa = PBXGroup;
 			children = (
-				B3A2133D263F995500EC0C07 /* AppDelegate.swift */,
-				B3A2133F263F995500EC0C07 /* SceneDelegate.swift */,
-				B3A21341263F995500EC0C07 /* ViewController.swift */,
+				B3A2136B263FD49500EC0C07 /* Model */,
+				B3A21358263FC32300EC0C07 /* View */,
+				B3A21357263FC30E00EC0C07 /* View Controller */,
 				B3A21343263F995500EC0C07 /* Main.storyboard */,
+				B3A2133F263F995500EC0C07 /* SceneDelegate.swift */,
+				B3A2133D263F995500EC0C07 /* AppDelegate.swift */,
 				B3A21346263F995600EC0C07 /* Assets.xcassets */,
 				B3A21348263F995600EC0C07 /* LaunchScreen.storyboard */,
 				B3A2134B263F995600EC0C07 /* Info.plist */,
+				B3350722264E6E2C0066CBDA /* GoogleService-Info.plist */,
+				B3F7FE7126465CF600BC0273 /* NumberKeyboardReturn.swift */,
 			);
 			path = spendingTracker;
+			sourceTree = "<group>";
+		};
+		B3A21357263FC30E00EC0C07 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B3A21351263F997000EC0C07 /* MainViewController.swift */,
+				B31DA4AD264BB887002F0570 /* AddExpenseItemTableViewController.swift */,
+				B3A2137926423CC600EC0C07 /* ReceiptPhotoViewController.swift */,
+				B3A213852642CA3500EC0C07 /* AccountTableViewController.swift */,
+				B3A213872642CA5800EC0C07 /* CategoryCollectionViewController.swift */,
+				B335071B264E44950066CBDA /* ReportsTableViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		B3A21358263FC32300EC0C07 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B3A21353263FA99700EC0C07 /* ExpenseItemTableViewCell.swift */,
+				B3A213892642CAA000EC0C07 /* AccountDetailTableViewCell.swift */,
+				B3A2138B2642CB1100EC0C07 /* CategoryDetailCollectionViewCell.swift */,
+				B335071D264E44BB0066CBDA /* ReportsTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B3A2136B263FD49500EC0C07 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B3A2136E263FE1D400EC0C07 /* Expense.swift */,
+				B3A2136C263FDE5700EC0C07 /* Enums.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +148,9 @@
 			dependencies = (
 			);
 			name = spendingTracker;
+			packageProductDependencies = (
+				B3350716264E36090066CBDA /* Charts */,
+			);
 			productName = spendingTracker;
 			productReference = B3A2133A263F995500EC0C07 /* spendingTracker.app */;
 			productType = "com.apple.product-type.application";
@@ -110,6 +178,9 @@
 				Base,
 			);
 			mainGroup = B3A21331263F995500EC0C07;
+			packageReferences = (
+				B3350715264E36090066CBDA /* XCRemoteSwiftPackageReference "Charts" */,
+			);
 			productRefGroup = B3A2133B263F995500EC0C07 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3A2134A263F995600EC0C07 /* LaunchScreen.storyboard in Resources */,
+				B3350723264E6E2D0066CBDA /* GoogleService-Info.plist in Resources */,
 				B3A21347263F995600EC0C07 /* Assets.xcassets in Resources */,
 				B3A21345263F995500EC0C07 /* Main.storyboard in Resources */,
 			);
@@ -137,8 +209,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3A21342263F995500EC0C07 /* ViewController.swift in Sources */,
+				B3A2136F263FE1D400EC0C07 /* Expense.swift in Sources */,
+				B3A2138C2642CB1100EC0C07 /* CategoryDetailCollectionViewCell.swift in Sources */,
+				B335071E264E44BB0066CBDA /* ReportsTableViewCell.swift in Sources */,
+				B3A21354263FA99700EC0C07 /* ExpenseItemTableViewCell.swift in Sources */,
+				B3A21352263F997000EC0C07 /* MainViewController.swift in Sources */,
+				B3A213882642CA5800EC0C07 /* CategoryCollectionViewController.swift in Sources */,
+				B3A2136D263FDE5700EC0C07 /* Enums.swift in Sources */,
+				B3A2138A2642CAA000EC0C07 /* AccountDetailTableViewCell.swift in Sources */,
 				B3A2133E263F995500EC0C07 /* AppDelegate.swift in Sources */,
+				B335071C264E44950066CBDA /* ReportsTableViewController.swift in Sources */,
+				B3A2137A26423CC600EC0C07 /* ReceiptPhotoViewController.swift in Sources */,
+				B3A213862642CA3500EC0C07 /* AccountTableViewController.swift in Sources */,
+				B31DA4AE264BB887002F0570 /* AddExpenseItemTableViewController.swift in Sources */,
+				B3F7FE7226465CF600BC0273 /* NumberKeyboardReturn.swift in Sources */,
 				B3A21340263F995500EC0C07 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,6 +425,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B3350715264E36090066CBDA /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B3350716264E36090066CBDA /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B3350715264E36090066CBDA /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B3A21332263F995500EC0C07 /* Project object */;
 }
