@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AddExpenseItemTableViewController: UITableViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -19,14 +20,17 @@ class AddExpenseItemTableViewController: UITableViewController {
     @IBOutlet weak var receiptPhotoImageView: UIImageView!
     @IBOutlet weak var memoTextField: UITextField!
     
-    let dataCategorys = DataCategorys.allCases
-    var expenseItem = ExpenseData(dateStr: "", amount: 0, category: ExpenseData.Category.init(incomeCategory: nil, expenseCategory: .food), account: .cash, receiptPhotoUrl: nil, memo: nil)
-    
+    var expenseData:ExpenseData?
+    var selectedDate:String?
+
     var isExpenseCategory:Bool?
     let datePicker = UIDatePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let expenseData = expenseData{
+            self.expenseData = expenseData
+        }
         updateUI()
     }
     
@@ -40,7 +44,7 @@ class AddExpenseItemTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let dataCategory = dataCategorys[indexPath.section]
+        let dataCategory = DataCategorys.allCases[indexPath.section]
         switch dataCategory {
         case .neededDatas:
             let neededData = NeededDatas.allCases[indexPath.row]
@@ -68,18 +72,48 @@ class AddExpenseItemTableViewController: UITableViewController {
             }
         }
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let amount = Int(amountTextField.text!) ?? 0
-        expenseItem.amount = amount
-        
-        if let memo = memoTextField.text{
-            expenseItem.memo = memo
+        if let _ = segue.destination as? MainViewController,
+           let appDelegate:AppDelegate = UIApplication.shared.delegate as? AppDelegate{
+            if expenseData == nil{
+                let expenseItem = ExpenseData(context: appDelegate.persistentContainer.viewContext)
+                
+                expenseItem.account = accountLabel.text
+                expenseItem.amount = Int32(amountTextField.text!) ?? 0
+                expenseItem.category = categoryLabel.text
+                expenseItem.dateStr = dateTextField.text
+                expenseItem.isExpense = isExpenseCategory ?? true
+                
+                if let memo = memoTextField.text{
+                    expenseItem.memo = memo
+                }
+                if let photo = receiptPhotoImageView.image{
+                    expenseItem.receiptPhoto = photo.pngData()
+                }
+                expenseData = expenseItem
+                print("### 新增，回去")
+            }else{
+                expenseData?.account = accountLabel.text
+                expenseData?.amount = Int32(amountTextField.text!) ?? 0
+                expenseData?.category = categoryLabel.text
+                expenseData?.dateStr = dateTextField.text
+                expenseData?.isExpense = isExpenseCategory ?? true
+                
+                if let memo = memoTextField.text{
+                    expenseData?.memo = memo
+                }
+                if let photoData = receiptPhotoImageView.image?.pngData(){
+                    expenseData?.receiptPhoto = photoData
+                }
+                print("#### 更新，回去")
+            }
         }
     }
     
     func showReceiptImageController() {
         if let controller = storyboard?.instantiateViewController(identifier: "\(ReceiptPhotoViewController.self)", creator: { coder in
-            ReceiptPhotoViewController(coder: coder, receiptImageUrl: self.expenseItem.receiptPhotoUrl)
+            ReceiptPhotoViewController(coder: coder, receiptImageData: self.expenseData?.receiptPhoto)
         }){
             controller.modalPresentationStyle = .fullScreen
             show(controller, sender: nil)
@@ -97,31 +131,43 @@ class AddExpenseItemTableViewController: UITableViewController {
         //set datepicker
         createDatePicker()
         
+        //set Date
+        dateTextField.text = selectedDate
+        
+        
         //載入 expenseData
-        dateTextField.text = expenseItem.dateStr
-        
-        if expenseItem.amount == 0{
-            amountTextField.text = ""
+        if let expenseData = expenseData{
+            dateTextField.text = expenseData.dateStr
+            
+            if expenseData.amount == 0{
+                amountTextField.text = ""
+            }else{
+                amountTextField.text = String(expenseData.amount)
+            }
+            categoryImageView.image = UIImage(named: "\(expenseData.category!)")
+            categoryLabel.text = expenseData.category
+            if expenseData.isExpense == true{
+                segmentedControl.selectedSegmentIndex = 0
+            }else{
+                segmentedControl.selectedSegmentIndex = 1
+            }
+            isExpenseCategory = expenseData.isExpense
+            accountImageView.image = UIImage(named: "\(expenseData.account!)")
+            accountLabel.text = expenseData.account
+            
+            if expenseData.receiptPhoto != nil {
+                receiptPhotoImageView.image = UIImage(data: expenseData.receiptPhoto!)
+                
+            }else if expenseData.memo != nil {
+                memoTextField.text = expenseData.memo
+            }
+            
         }else{
-            amountTextField.text = String(expenseItem.amount)
+            categoryLabel.text = Expense.expenseCategories.first?.rawValue
+            categoryImageView.image = UIImage(named: Expense.expenseCategories.first?.rawValue ?? "")
+            accountLabel.text = Expense.accounts.first?.rawValue
+            accountImageView.image = UIImage(named: Expense.accounts.first?.rawValue ?? "")
         }
-        if expenseItem.category.expenseCategory == nil{
-            segmentedControl.selectedSegmentIndex = 1
-            isExpenseCategory = false
-            categoryImageView.image = UIImage(named: "\(expenseItem.category.incomeCategory!)")
-            categoryLabel.text = expenseItem.category.incomeCategory?.rawValue
-        }else{
-            segmentedControl.selectedSegmentIndex = 0
-            isExpenseCategory = true
-            categoryLabel.text = expenseItem.category.expenseCategory?.rawValue
-            categoryImageView.image = UIImage(named: "\(expenseItem.category.expenseCategory!)")
-        }
-        accountImageView.image = UIImage(named: "\(expenseItem.account)")
-        accountLabel.text = expenseItem.account.rawValue
-        
-        ExpenseData.fetchReceiptImage(imageUrl: expenseItem.receiptPhotoUrl, imageView: receiptPhotoImageView)
-        
-        memoTextField.text = expenseItem.memo
     }
     
     func didNotCompleteAlertController() {
@@ -130,10 +176,9 @@ class AddExpenseItemTableViewController: UITableViewController {
         controller.addAction(action)
         present(controller, animated: true, completion: nil)
     }
-    func dateFormatStrNSave(date:Date)->String {
+    func dateFormatter(date:Date)->String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "E, MMM d, yyyy"
-        expenseItem.dateStr = dateFormatter.string(from: date)
         return dateFormatter.string(from: date)
     }
 
@@ -154,25 +199,24 @@ class AddExpenseItemTableViewController: UITableViewController {
         return toolBar
     }
     @objc func selectDoneButton(){
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "E, MMM d, yyyy"
-        dateTextField.text = dateFormatStrNSave(date: datePicker.date)
+        dateTextField.text = dateFormatter(date: datePicker.date)
         self.view.endEditing(true)
     }
     
     @IBAction func changeCategory(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             isExpenseCategory = true
-            expenseItem.category.expenseCategory = ExpenseData.expenseCategories.first
-            expenseItem.category.incomeCategory = nil
-            categoryImageView.image = UIImage(named: "\(expenseItem.category.expenseCategory!)")
-            categoryLabel.text = expenseItem.category.expenseCategory?.rawValue
+            expenseData?.isExpense = true
+            expenseData?.category = Expense.expenseCategories.first?.rawValue
+            categoryLabel.text = Expense.expenseCategories.first?.rawValue
+            categoryImageView.image = UIImage(named: Expense.expenseCategories.first!.rawValue)
+            
         }else{
             isExpenseCategory = false
-            expenseItem.category.incomeCategory = ExpenseData.incomeCategories.first
-            expenseItem.category.expenseCategory = nil
-            categoryImageView.image = UIImage(named: "\(expenseItem.category.incomeCategory!)")
-            categoryLabel.text = expenseItem.category.incomeCategory?.rawValue
+            expenseData?.isExpense = false
+            expenseData?.category = Expense.incomeCategories.first?.rawValue
+            categoryLabel.text = Expense.incomeCategories.first?.rawValue
+            categoryImageView.image = UIImage(named: Expense.incomeCategories.first!.rawValue)
         }
     }
     @IBAction func selectPhoto(_ sender: Any) {
@@ -186,30 +230,27 @@ class AddExpenseItemTableViewController: UITableViewController {
     @IBAction func unwindToAddExpenseScene(_ unwindSegue: UIStoryboardSegue) {
         
         if let _ = unwindSegue.source as? ReceiptPhotoViewController{
-            expenseItem.receiptPhotoUrl = nil
             receiptPhotoImageView.image = nil
             cameraBtn.isHidden = false
         }else if let categorySource = unwindSegue.source as? CategoryCollectionViewController,
                  let row = categorySource.row{
             
             if segmentedControl.selectedSegmentIndex == 0 {
-                let category = ExpenseData.expenseCategories[row]
-                expenseItem.category = ExpenseData.Category(incomeCategory: nil, expenseCategory: category)
-                categoryImageView.image = UIImage(named: "\(expenseItem.category.expenseCategory!)")
-                categoryLabel.text = expenseItem.category.expenseCategory?.rawValue
+                let category = Expense.expenseCategories[row].rawValue
+                expenseData?.isExpense = true
+                categoryImageView.image = UIImage(named: category)
+                categoryLabel.text = category
             }else{
-                let category = ExpenseData.incomeCategories[row]
-                expenseItem.category = ExpenseData.Category(incomeCategory: category, expenseCategory: nil)
-                categoryImageView.image = UIImage(named: "\(expenseItem.category.incomeCategory!)")
-                categoryLabel.text = expenseItem.category.incomeCategory?.rawValue
+                let category = Expense.incomeCategories[row].rawValue
+                expenseData?.isExpense = false
+                categoryImageView.image = UIImage(named: category)
+                categoryLabel.text = category
             }
-            
         }else if let accountSource = unwindSegue.source as? AccountTableViewController,
                  let row = accountSource.row{
-            let account = ExpenseData.accounts[row]
-            expenseItem.account = account
-            accountImageView.image = UIImage(named: "\(expenseItem.account)")
-            accountLabel.text = expenseItem.account.rawValue
+            let account = Expense.accounts[row].rawValue
+            accountImageView.image = UIImage(named: account)
+            accountLabel.text = account
         }
         tableView.reloadData()
     }
@@ -228,7 +269,6 @@ extension AddExpenseItemTableViewController:UITextFieldDelegate{
 }
 extension AddExpenseItemTableViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        expenseItem.receiptPhotoUrl = info[.imageURL] as? URL
         receiptPhotoImageView.image = info[.originalImage] as? UIImage
         cameraBtn.isHidden = true
         dismiss(animated: true, completion: nil)

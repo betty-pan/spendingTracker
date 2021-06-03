@@ -9,10 +9,10 @@ import UIKit
 
 class ReceiptPhotoViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
-    var receiptImageUrl:URL?
+    var receiptImageData:Data?
     
-    init?(coder:NSCoder, receiptImageUrl:URL?) {
-        self.receiptImageUrl = receiptImageUrl
+    init?(coder:NSCoder, receiptImageData:Data?) {
+        self.receiptImageData = receiptImageData
         super.init(coder: coder)
     }
     required init?(coder: NSCoder) {
@@ -22,7 +22,7 @@ class ReceiptPhotoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ExpenseData.fetchReceiptImage(imageUrl: receiptImageUrl, imageView: imageView)
+        imageView.image = UIImage(data: receiptImageData!)
     }
     
     
@@ -31,6 +31,6 @@ class ReceiptPhotoViewController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        receiptImageUrl = nil
+        receiptImageData = nil
     }
 }

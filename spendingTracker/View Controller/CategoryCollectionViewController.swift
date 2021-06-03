@@ -11,8 +11,6 @@ private let reuseIdentifier = "\(CategoryDetailCollectionViewCell.self)"
 
 class CategoryCollectionViewController: UICollectionViewController {
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-    var expenseCategories = ExpenseData.expenseCategories
-    var incomeCategories = ExpenseData.incomeCategories
     
     var row:Int?
     var isExpenseCategory:Bool?
@@ -54,22 +52,22 @@ class CategoryCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isExpenseCategory == true {
-            return expenseCategories.count
+            return Expense.expenseCategories.count
         }else{
-            return incomeCategories.count
+            return Expense.incomeCategories.count
         }
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? CategoryDetailCollectionViewCell else { return UICollectionViewCell() }
         if isExpenseCategory == true {
-            let expenseCategory = expenseCategories[indexPath.row]
+            let expenseCategory = Expense.expenseCategories[indexPath.row]
             cell.categoryLabel.text = expenseCategory.rawValue
-            cell.categoryImageView.image = UIImage(named: "\(expenseCategory)")
+            cell.categoryImageView.image = UIImage(named: "\(expenseCategory.rawValue)")
         }else{
-            let incomeCategory = incomeCategories[indexPath.row]
+            let incomeCategory = Expense.incomeCategories[indexPath.row]
             cell.categoryLabel.text = incomeCategory.rawValue
-            cell.categoryImageView.image = UIImage(named: "\(incomeCategory)")
+            cell.categoryImageView.image = UIImage(named: "\(incomeCategory.rawValue)")
         }
         
         return cell

@@ -16,7 +16,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        
+        //指定controller讀取 AppDelegate 資料
         guard let _ = (scene as? UIWindowScene) else { return }
+        if let tabController = window?.rootViewController as? UITabBarController,
+           let navControllers = tabController.viewControllers as? [UINavigationController]{
+            
+            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            
+            navControllers.forEach { (navController) in
+                switch navController.viewControllers[0]{
+                case let controller as MainViewController:
+                    controller.container = appDelegate?.persistentContainer
+                case let controller as ReportsTableViewController:
+                    controller.container = appDelegate?.persistentContainer
+                default:
+                    break
+                }
+            }
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -42,9 +60,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
+        print("### sceneDidEnterBackground")
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
 
 

@@ -26,6 +26,7 @@
 		B3A213882642CA5800EC0C07 /* CategoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A213872642CA5800EC0C07 /* CategoryCollectionViewController.swift */; };
 		B3A2138A2642CAA000EC0C07 /* AccountDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A213892642CAA000EC0C07 /* AccountDetailTableViewCell.swift */; };
 		B3A2138C2642CB1100EC0C07 /* CategoryDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A2138B2642CB1100EC0C07 /* CategoryDetailCollectionViewCell.swift */; };
+		B3D701702664895B00393FA5 /* SpendingTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B3D7016E2664895B00393FA5 /* SpendingTracker.xcdatamodeld */; };
 		B3F7FE7226465CF600BC0273 /* NumberKeyboardReturn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F7FE7126465CF600BC0273 /* NumberKeyboardReturn.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		B3A213872642CA5800EC0C07 /* CategoryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewController.swift; sourceTree = "<group>"; };
 		B3A213892642CAA000EC0C07 /* AccountDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailTableViewCell.swift; sourceTree = "<group>"; };
 		B3A2138B2642CB1100EC0C07 /* CategoryDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		B3D7016F2664895B00393FA5 /* SpendingTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SpendingTracker.xcdatamodel; sourceTree = "<group>"; };
 		B3F7FE7126465CF600BC0273 /* NumberKeyboardReturn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberKeyboardReturn.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,17 +86,18 @@
 		B3A2133C263F995500EC0C07 /* spendingTracker */ = {
 			isa = PBXGroup;
 			children = (
+				B3A2133F263F995500EC0C07 /* SceneDelegate.swift */,
+				B3A2133D263F995500EC0C07 /* AppDelegate.swift */,
 				B3A2136B263FD49500EC0C07 /* Model */,
 				B3A21358263FC32300EC0C07 /* View */,
 				B3A21357263FC30E00EC0C07 /* View Controller */,
 				B3A21343263F995500EC0C07 /* Main.storyboard */,
-				B3A2133F263F995500EC0C07 /* SceneDelegate.swift */,
-				B3A2133D263F995500EC0C07 /* AppDelegate.swift */,
 				B3A21346263F995600EC0C07 /* Assets.xcassets */,
 				B3A21348263F995600EC0C07 /* LaunchScreen.storyboard */,
 				B3A2134B263F995600EC0C07 /* Info.plist */,
 				B3350722264E6E2C0066CBDA /* GoogleService-Info.plist */,
 				B3F7FE7126465CF600BC0273 /* NumberKeyboardReturn.swift */,
+				B3D7016E2664895B00393FA5 /* SpendingTracker.xcdatamodeld */,
 			);
 			path = spendingTracker;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				B3A213882642CA5800EC0C07 /* CategoryCollectionViewController.swift in Sources */,
 				B3A2136D263FDE5700EC0C07 /* Enums.swift in Sources */,
 				B3A2138A2642CAA000EC0C07 /* AccountDetailTableViewCell.swift in Sources */,
+				B3D701702664895B00393FA5 /* SpendingTracker.xcdatamodeld in Sources */,
 				B3A2133E263F995500EC0C07 /* AppDelegate.swift in Sources */,
 				B335071C264E44950066CBDA /* ReportsTableViewController.swift in Sources */,
 				B3A2137A26423CC600EC0C07 /* ReceiptPhotoViewController.swift in Sources */,
@@ -444,6 +448,19 @@
 			productName = Charts;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		B3D7016E2664895B00393FA5 /* SpendingTracker.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B3D7016F2664895B00393FA5 /* SpendingTracker.xcdatamodel */,
+			);
+			currentVersion = B3D7016F2664895B00393FA5 /* SpendingTracker.xcdatamodel */;
+			path = SpendingTracker.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B3A21332263F995500EC0C07 /* Project object */;
 }

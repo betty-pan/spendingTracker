@@ -9,6 +9,7 @@ import UIKit
 
 class AccountTableViewController: UITableViewController {
     var row:Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.reloadData()
@@ -23,16 +24,16 @@ class AccountTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return ExpenseData.accounts.count
+        return Expense.accounts.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(AccountDetailTableViewCell.self)") as? AccountDetailTableViewCell else { return UITableViewCell() }
         
-        let account = ExpenseData.accounts[indexPath.row]
+        let account = Expense.accounts[indexPath.row]
         cell.accountLabel.text = account.rawValue
-        cell.accountImageView.image = UIImage(named: "\(account)")
+        cell.accountImageView.image = UIImage(named: "\(account.rawValue)")
 
         return cell
     }
